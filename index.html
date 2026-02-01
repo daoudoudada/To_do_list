@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación moderna de lista de tareas con diseño glassmorphism">
+    <title>To Do List - Organiza tu día con estilo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">✓</div>
+                <h1>To Do List</h1>
+            </div>
+            <p class="subtitle">Organiza tu día con estilo</p>
+        </header>
+
+        <!-- Tarjeta principal -->
+        <div class="glass-card">
+            <!-- Input para nueva tarea -->
+            <div class="input-container">
+                <input 
+                    type="text" 
+                    class="task-input" 
+                    id="taskInput" 
+                    placeholder="¿Qué necesitas hacer hoy?"
+                    maxlength="200"
+                >
+                <select class="priority-select" id="prioritySelect">
+                    <option value="low">🟢 Baja</option>
+                    <option value="medium" selected>🟡 Media</option>
+                    <option value="high">🔴 Alta</option>
+                </select>
+                <input 
+                    type="time" 
+                    class="time-input" 
+                    id="timeInput"
+                    placeholder="Hora"
+                >
+                <button class="add-btn" id="addBtn">
+                    Añadir
+                </button>
+            </div>
+
+            <!-- Controles y filtros -->
+            <div class="controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pending">Pendientes</button>
+                    <button class="filter-btn" data-filter="completed">Completadas</button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="pendingCount">0</span>
+                        <span>pendientes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de tareas -->
+            <ul class="tasks-list" id="tasksList">
+                <!-- Las tareas se añaden dinámicamente aquí -->
+            </ul>
+
+            <!-- Estado vacío -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-state-icon">📝</div>
+                <p class="empty-state-text">No hay tareas aquí</p>
+            </div>
+
+            <!-- Acciones -->
+            <div class="actions">
+                <button class="clear-btn" id="clearBtn" disabled>
+                    Limpiar completadas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de edición -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✏️ Editar Tarea</h2>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTaskText">Tarea</label>
+                    <input 
+                        type="text" 
+                        id="editTaskText" 
+                        class="modal-input"
+                        placeholder="Nombre de la tarea"
+                        maxlength="200"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="editPriority">Prioridad</label>
+                    <select id="editPriority" class="modal-select">
+                        <option value="low">🟢 Baja</option>
+                        <option value="medium">🟡 Media</option>
+                        <option value="high">🔴 Alta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTime">Hora</label>
+                    <input 
+                        type="time" 
+                        id="editTime" 
+                        class="modal-input"
+                    >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn" id="cancelEdit">Cancelar</button>
+                <button class="modal-btn save-btn" id="saveEdit">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
